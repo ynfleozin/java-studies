@@ -1,4 +1,4 @@
-package dev.leonardoalvarenga.katas;
+package dev.leonardoalvarenga.katas.fizzbuzz;
 
 public class FizzBuzz {
     public static String calcular(int numero){

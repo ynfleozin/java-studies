@@ -1,4 +1,4 @@
-package dev.leonardoalvarenga.katas;
+package dev.leonardoalvarenga.katas.fizzbuzz;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
