@@ -1,5 +1,6 @@
 package dev.leonardoalvarenga.ecommerce;
 
+import dev.leonardoalvarenga.ecommerce.enums.PaymentMethod;
 import dev.leonardoalvarenga.ecommerce.interfaces.Taxable;
 import dev.leonardoalvarenga.ecommerce.models.Book;
 import dev.leonardoalvarenga.ecommerce.models.Electronics;
@@ -14,6 +15,11 @@ public class Main {
         pedido.addProduct(new Book("Pequeno Príncipe", 20, "Antoine"));
         pedido.addProduct(new Electronics("TV", 2000, 365));
 
-        System.out.println("Total: R$" + pedido.calculateTotalPrice());
+        double subtotal = pedido.calculateTotalPrice();
+
+        PaymentMethod method = PaymentMethod.PIX;
+        double valorFinal = method.calculateFinalPrice(subtotal);
+
+        System.out.println("Total: R$" + valorFinal);
     }
 }
