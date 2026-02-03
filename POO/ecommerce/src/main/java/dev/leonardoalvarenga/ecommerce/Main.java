@@ -1,5 +1,6 @@
 package dev.leonardoalvarenga.ecommerce;
 
+import dev.leonardoalvarenga.ecommerce.interfaces.Taxable;
 import dev.leonardoalvarenga.ecommerce.models.Book;
 import dev.leonardoalvarenga.ecommerce.models.Electronics;
 
@@ -25,6 +26,11 @@ public class Main {
             if(item instanceof Electronics){
                 Electronics electronics = (Electronics) item;
                 System.out.println("Garantia: " + electronics.getWarrantyDays() + " dias");
+            }
+
+            if(item instanceof Taxable){
+                Taxable pagador = (Taxable) item;
+                System.out.println("Taxa: " + pagador.calculateTax());
             }
 
             System.out.println("-----------------------");

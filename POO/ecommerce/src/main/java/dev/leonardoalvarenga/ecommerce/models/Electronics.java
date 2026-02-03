@@ -1,8 +1,9 @@
 package dev.leonardoalvarenga.ecommerce.models;
 
 import dev.leonardoalvarenga.ecommerce.Product;
+import dev.leonardoalvarenga.ecommerce.interfaces.Taxable;
 
-public class Electronics extends Product {
+public class Electronics extends Product implements Taxable {
     private int warrantyDays;
 
     public Electronics(String name, double price, int warrantyDays){
@@ -12,5 +13,10 @@ public class Electronics extends Product {
 
     public int getWarrantyDays() {
         return warrantyDays;
+    }
+
+    @Override
+    public double calculateTax(){
+        return getPrice() * 0.10;
     }
 }
