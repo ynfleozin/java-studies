@@ -9,31 +9,11 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Product> carrinho = new ArrayList<>();
+        Order pedido = new Order();
 
-        carrinho.add(new Book("Pequeno Príncipe", 20, "Antoine"));
-        carrinho.add(new Electronics("TV", 2000, 365));
+        pedido.addProduct(new Book("Pequeno Príncipe", 20, "Antoine"));
+        pedido.addProduct(new Electronics("TV", 2000, 365));
 
-        for(Product item : carrinho){
-            System.out.println("Item: " + item.getName());
-            System.out.println("Preço: " + item.getPrice());
-
-            if(item instanceof Book){
-                Book book = (Book) item;
-                System.out.println("Autor: " + book.getAuthor());
-            }
-
-            if(item instanceof Electronics){
-                Electronics electronics = (Electronics) item;
-                System.out.println("Garantia: " + electronics.getWarrantyDays() + " dias");
-            }
-
-            if(item instanceof Taxable){
-                Taxable pagador = (Taxable) item;
-                System.out.println("Taxa: " + pagador.calculateTax());
-            }
-
-            System.out.println("-----------------------");
-        }
+        System.out.println("Total: R$" + pedido.calculateTotalPrice());
     }
 }
