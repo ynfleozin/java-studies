@@ -5,16 +5,22 @@ public abstract class Character {
     protected int hp;
     protected int maxHp;
 
-    void receiveDamage(int damage){
+    public Character(String name, int hp,int maxHp){
+        this.name = name;
+        this.hp = hp;
+        this.maxHp = maxHp;
+    }
+
+    public void receiveDamage(int damage){
        if( hp < 0 ){
            hp = 0;
        }
        hp -= damage;
     }
 
-    boolean isAlive(){
+    public boolean isAlive(){
         return hp > 0;
     }
 
-    abstract void attack(Character target);
+    public abstract void attack(Character target);
 }
