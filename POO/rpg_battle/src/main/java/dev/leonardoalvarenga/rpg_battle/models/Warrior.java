@@ -21,4 +21,8 @@ public class Warrior extends Character {
             stamina -= 5;
         }
     }
+
+    public int getStamina() {
+        return stamina;
+    }
 }
