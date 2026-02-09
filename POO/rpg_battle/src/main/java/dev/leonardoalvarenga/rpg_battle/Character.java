@@ -12,10 +12,10 @@ public abstract class Character {
     }
 
     public void receiveDamage(int damage){
-       if( hp < 0 ){
-           hp = 0;
-       }
        hp -= damage;
+        if( hp < 0 ){
+            hp = 0;
+        }
     }
 
     public boolean isAlive(){
