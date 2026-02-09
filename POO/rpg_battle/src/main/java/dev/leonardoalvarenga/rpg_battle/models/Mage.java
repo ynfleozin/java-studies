@@ -24,4 +24,8 @@ public class Mage extends Character {
             mana -= 10;
         }
     }
+
+    public int getMana() {
+        return mana;
+    }
 }
