@@ -14,15 +14,16 @@ public class Mage extends Character {
 
     @Override
     public void attack(Character target){
-        int damage = intelligence;
+        int damage;
 
-        if(mana < 10){
-            damage = 2;
-            target.receiveDamage(damage);
-        }else{
-            target.receiveDamage(damage);
+        if(mana >= 10){
+            damage = intelligence;
             mana -= 10;
+        } else{
+            damage = 2;
         }
+
+        target.receiveDamage(damage);
     }
 
     public int getMana() {
