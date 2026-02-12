@@ -27,6 +27,28 @@ public class InventoryTest {
     }
 
     @Test
+    void diminuirQuantidadeItem(){
+        Inventory inventory = new Inventory();
+
+        inventory.addItem("potion");
+        inventory.addItem("potion");
+        inventory.removeItem("potion");
+
+        assertEquals(1, inventory.getQuantity("potion"));
+    }
+
+    @Test
+
+    void removerItemDaLista(){
+        Inventory inventory = new Inventory();
+
+        inventory.addItem("potion");
+        inventory.removeItem("potion");
+
+        assertEquals(0, inventory.getQuantity("potion"));
+    }
+
+    @Test
     void retornaZeroQuandoNaoHouverItem(){
         Inventory inventory = new Inventory();
 
