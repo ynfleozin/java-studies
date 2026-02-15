@@ -14,7 +14,7 @@ Develop strong backend engineering skills by applying concepts through increment
 
 ## 📚 Learning Roadmap
 
-### Weeks 1–8 — Core Java Foundations
+### Core Java Foundations
 
 Focus on language fundamentals and clean coding practices.
 
@@ -38,7 +38,7 @@ Focus on language fundamentals and clean coding practices.
 
 ---
 
-### Weeks 9–16 — Spring Boot & Modern Backend Development
+### Spring Boot & Modern Backend Development
 
 Transition to building production-style APIs.
 
