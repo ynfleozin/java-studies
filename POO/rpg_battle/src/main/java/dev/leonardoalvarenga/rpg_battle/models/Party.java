@@ -8,18 +8,20 @@ import java.util.Set;
 public class Party {
     Set<Character> members = new HashSet<>();
 
-    void addMember(Character c){
-        boolean added = members.add(c);
-
-        if(added){
-            System.out.println("Personagem adicionado.");
-        }else{
-            System.out.println("ERRO: Personagem existente!");
-        }
+    public boolean addMember(Character character){
+        return members.add(character);
     }
 
-    void showMembers(){
+    public void showMembers(){
         System.out.println("--- PARTY ---");
         members.forEach(System.out::println);
+    }
+
+    public int size(){
+        return members.size();
+    }
+
+    public boolean contains(Character character){
+        return members.contains(character);
     }
 }
