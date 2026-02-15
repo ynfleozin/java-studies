@@ -40,9 +40,14 @@ public abstract class Character {
 
     @Override
     public String toString() {
-        return "Name='" + name + '\'' +
-                ", HP=" + hp +
-                ", maxHP=" + maxHp +
-                '}';
+        return this.name + " (" + this.getClass().getSimpleName() + ") - HP: " + this.hp + "/" + this.maxHp;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+
+    public String getName(){
+        return name;
     }
 }
