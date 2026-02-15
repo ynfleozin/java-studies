@@ -17,4 +17,9 @@ public class Party {
             System.out.println("ERRO: Personagem existente!");
         }
     }
+
+    void showMembers(){
+        System.out.println("--- PARTY ---");
+        members.forEach(System.out::println);
+    }
 }
