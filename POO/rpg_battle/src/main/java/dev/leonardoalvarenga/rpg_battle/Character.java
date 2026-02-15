@@ -1,5 +1,7 @@
 package dev.leonardoalvarenga.rpg_battle;
 
+import java.util.Objects;
+
 public abstract class Character {
     protected String name;
     protected int hp;
@@ -23,4 +25,16 @@ public abstract class Character {
     }
 
     public abstract void attack(Character target);
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Character character = (Character) o;
+        return Objects.equals(name, character.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(name);
+    }
 }
