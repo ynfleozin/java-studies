@@ -1,11 +1,13 @@
 package dev.leonardoalvarenga.todolist;
 
+import dev.leonardoalvarenga.todolist.exceptions.TaskNotFoundException;
 import dev.leonardoalvarenga.todolist.repositories.TaskRepository;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class TaskRepositoryTest {
     @Test
@@ -58,5 +60,14 @@ public class TaskRepositoryTest {
 
         assertEquals("Limpar fogão", ordenadas.get(0).getTitle());
         assertEquals("Lavar a louça", ordenadas.get(2).getTitle());
+    }
+
+    @Test
+    public void deveLancarExcecaoAoRemoverTarefaInexistente(){
+        TaskRepository repository = new TaskRepository();
+
+        assertThrows(TaskNotFoundException.class, () -> {
+            repository.removeTaskByTitle("Casa", "Lava o teto");
+        });
     }
 }

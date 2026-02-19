@@ -1,6 +1,7 @@
 package dev.leonardoalvarenga.todolist.repositories;
 
 import dev.leonardoalvarenga.todolist.Task;
+import dev.leonardoalvarenga.todolist.exceptions.TaskNotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,5 +39,19 @@ public class TaskRepository {
         Collections.sort(orderedTasks);
 
         return orderedTasks;
+    }
+
+    public void removeTaskByTitle(String category, String title){
+        List<Task> tasks = board.get(category);
+
+        if (tasks == null || tasks.isEmpty()){
+            throw new TaskNotFoundException("A categoria '" + category + "' não existe.");
+        }
+
+        boolean removed = tasks.removeIf(t -> t.getTitle().equals(title));
+
+        if(!removed){
+            throw new TaskNotFoundException("A tarefa '" + title + "' não foi encontrada.");
+        }
     }
 }
