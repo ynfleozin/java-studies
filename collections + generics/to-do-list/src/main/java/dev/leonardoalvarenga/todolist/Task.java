@@ -1,6 +1,6 @@
 package dev.leonardoalvarenga.todolist;
 
-public class Task {
+public class Task implements Comparable<Task> {
     private String title;
     private String category;
     private int priority;
@@ -26,5 +26,10 @@ public class Task {
     @Override
     public String toString() {
         return String.format("[%d] %s (%s)", priority, title, category);
+    }
+
+    @Override
+    public int compareTo(Task otherTask){
+        return Integer.compare(this.priority, otherTask.priority);
     }
 }
