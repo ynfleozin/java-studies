@@ -44,4 +44,18 @@ public class TaskBoardTest {
         assertNotNull(tarefasLazer);
         assertTrue(tarefasLazer.isEmpty());
     }
+
+    @Test
+    public void deveRetornarTarefasOrdenadasPorPrioridade(){
+        TaskBoard board = new TaskBoard();
+
+        board.addTask(new Task("Lavar a louça", "Casa", 4));
+        board.addTask(new Task("Limpar fogão", "Casa", 1));
+        board.addTask(new Task("Varrer sala", "Casa", 3));
+
+        List<Task> ordenadas = board.getTasksByCategorySorted("Casa");
+
+        assertEquals("Limpar fogão", ordenadas.get(0).getTitle());
+        assertEquals("Lavar a louça", ordenadas.get(2).getTitle());
+    }
 }
