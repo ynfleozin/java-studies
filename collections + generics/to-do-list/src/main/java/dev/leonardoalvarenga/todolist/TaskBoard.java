@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Collections;
 
 public class TaskBoard {
     private Map<String, List<Task>> board = new HashMap<>();
@@ -26,5 +27,14 @@ public class TaskBoard {
         }
 
         return board.get(category);
+    }
+
+    public List<Task> getTasksByCategorySorted(String category){
+        List<Task> tasks = getTasksByCategory(category);
+
+        List<Task> orderedTasks = new ArrayList<>(tasks);
+        Collections.sort(orderedTasks);
+
+        return orderedTasks;
     }
 }
