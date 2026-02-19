@@ -1,4 +1,6 @@
-package dev.leonardoalvarenga.todolist;
+package dev.leonardoalvarenga.todolist.repositories;
+
+import dev.leonardoalvarenga.todolist.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Collections;
 
-public class TaskBoard {
+public class TaskRepository {
     private Map<String, List<Task>> board = new HashMap<>();
 
     public void addTask(Task task){

@@ -1,15 +1,16 @@
 package dev.leonardoalvarenga.todolist;
 
+import dev.leonardoalvarenga.todolist.repositories.TaskRepository;
 import org.junit.Test;
 
 import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class TaskBoardTest {
+public class TaskRepositoryTest {
     @Test
     public void deveAdicionarERecuperarTarefaPorCategoria(){
-        TaskBoard board = new TaskBoard();
+        TaskRepository board = new TaskRepository();
         Task t1 = new Task("Estudar Java", "Estudos", 1);
 
         board.addTask(t1);
@@ -23,7 +24,7 @@ public class TaskBoardTest {
 
     @Test
     public void deveAgruparMultiplasTarefasNaMesmaCategoria(){
-        TaskBoard board = new TaskBoard();
+        TaskRepository board = new TaskRepository();
 
         board.addTask(new Task("Lavar a louça", "Casa", 3));
         board.addTask(new Task("Varrer sala", "Casa", 4));
@@ -37,7 +38,7 @@ public class TaskBoardTest {
 
     @Test
     public void deveRetornarListaVaziaParaCategoriaInexistente(){
-        TaskBoard board = new TaskBoard();
+        TaskRepository board = new TaskRepository();
 
         List<Task> tarefasLazer = board.getTasksByCategory("Lazer");
 
@@ -47,7 +48,7 @@ public class TaskBoardTest {
 
     @Test
     public void deveRetornarTarefasOrdenadasPorPrioridade(){
-        TaskBoard board = new TaskBoard();
+        TaskRepository board = new TaskRepository();
 
         board.addTask(new Task("Lavar a louça", "Casa", 4));
         board.addTask(new Task("Limpar fogão", "Casa", 1));
