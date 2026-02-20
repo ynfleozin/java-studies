@@ -1,22 +1,24 @@
 package dev.leonardoalvarenga.todolist;
 
-import java.util.PriorityQueue;
-import java.util.Queue;
+import dev.leonardoalvarenga.todolist.repositories.TaskRepository;
+import dev.leonardoalvarenga.todolist.services.TaskService;
 
 public class Main {
     public static void main(String[] args) {
-        Queue<Task> taskQueue = new PriorityQueue<>();
+        TaskRepository repository = new TaskRepository();
 
-        taskQueue.add(new Task("Lavar louça", "Casa", 4));
-        taskQueue.add(new Task("Entregar relatórios", "Trabalho", 1));
-        taskQueue.add(new Task("Comprar pão", "Compras", 5));
-        taskQueue.add(new Task("Reunião", "Trabalho", 2));
+        repository.addTask(new Task("Lavar a louça", "Casa", 4));
+        repository.addTask(new Task("Varrer sala", "Casa", 3));
+        repository.addTask(new Task("Entregar relatórios", "Trabalho", 1));
 
-        System.out.println("Executando tarefas...");
+        TaskService service = new TaskService(repository);
 
-        while(!taskQueue.isEmpty()){
-            Task task = taskQueue.poll();
-            System.out.println("Fazendo agora: " + task);
-        }
+        System.out.println("TESTANDO REMOÇÃO c/ SUCESSO");
+        service.removeTaskSafe("Casa", "Lavar a louça");
+
+        System.out.println("TESTANDO REMOÇÃO c/ ERRO");
+        service.removeTaskSafe("Casa", "Lavar o teto");
+
+        service.removeTaskSafe("Lazer", "Jogar videogame");
     }
 }
