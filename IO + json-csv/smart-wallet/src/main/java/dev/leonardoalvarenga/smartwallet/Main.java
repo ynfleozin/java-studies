@@ -1,6 +1,8 @@
 package dev.leonardoalvarenga.smartwallet;
 
+import dev.leonardoalvarenga.smartwallet.interfaces.DataExporter;
 import dev.leonardoalvarenga.smartwallet.models.Transaction;
+import dev.leonardoalvarenga.smartwallet.services.CsvExporter;
 import dev.leonardoalvarenga.smartwallet.services.FileStorageService;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class Main {
         System.out.println("Lendo dados no disco...");
         List<Transaction> extract = storage.importTransactionsFromJson(path);
 
-        for(Transaction t : extract){
+        for (Transaction t : extract) {
             System.out.println("-> " + t.getDescription() + " | R$ " + t.getAmount() + " | " + t.getType());
         }
 
@@ -23,5 +25,9 @@ public class Main {
 
         System.out.println("Guardando dados no disco...");
         storage.exportTransactionsToJson(extract, path);
+
+        System.out.println("Gerando relatório em CSV");
+        DataExporter excelExporter = new CsvExporter();
+        excelExporter.export(extract, "relatório_financeiro.csv");
     }
 }
