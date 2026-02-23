@@ -8,12 +8,20 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Transaction> extract = new ArrayList<>();
-        extract.add(new Transaction("Salário", 5000, "INCOME"));
-        extract.add(new Transaction("Pizza", 65.50, "EXPENSE"));
-        extract.add(new Transaction("Conta de Luz", 120, "EXPENSE"));
-
         FileStorageService storage = new FileStorageService();
-        storage.exportTransactionsToJson(extract, "extract.json");
+        String path = "extract.json";
+
+        System.out.println("Lendo dados no disco...");
+        List<Transaction> extract = storage.importTransactionsFromJson(path);
+
+        for(Transaction t : extract){
+            System.out.println("-> " + t.getDescription() + " | R$ " + t.getAmount() + " | " + t.getType());
+        }
+
+        extract.add(new Transaction("Café Expresso", 2.50, "EXPENSE"));
+        System.out.println("Adicionado: Café Expresso - R$2.50");
+
+        System.out.println("Guardando dados no disco...");
+        storage.exportTransactionsToJson(extract, path);
     }
 }
