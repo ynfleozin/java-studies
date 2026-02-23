@@ -1,14 +1,23 @@
 package dev.leonardoalvarenga.smartwallet.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import dev.leonardoalvarenga.smartwallet.models.Transaction;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class FileStorageService {
-    public void testWritingToDisk(String text) {
-        try (FileWriter writer = new FileWriter("teste_banco.txt")) {
-            writer.write(text);
-        } catch (IOException e) {
-            System.out.println("Erro ao salvar arquivo no disco: " + e.getMessage());
+    public void exportTransactionsToJson(List<Transaction> transactions, String filepath){
+        ObjectMapper mapper = new ObjectMapper();
+
+        try{
+            mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filepath), transactions);
+
+            System.out.println("Extrato exportado para JSON com SUCESSO em: " + filepath);
+        }catch (IOException e){
+            System.out.println("ERRO ao exportar JSON: " + e.getMessage());
         }
     }
 }
