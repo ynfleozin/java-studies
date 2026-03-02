@@ -1,8 +1,10 @@
 package dev.leonardoalvarenga.ecommerce.DAO;
 
 import dev.leonardoalvarenga.ecommerce.config.ConnectionFactory;
+import dev.leonardoalvarenga.ecommerce.models.Product;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -29,6 +31,23 @@ public class ProductDAO {
 
         }catch(SQLException e){
             throw new RuntimeException("ERRO ao criar tabela: " + e.getMessage());
+        }
+    }
+
+    public void save(Product product) {
+        String sql = "INSERT INTO products (name, price, stock) VALUES (?, ?, ?)";
+
+        try(Connection conn = factory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, product.getName());
+            pstmt.setDouble(2, product.getPrice());
+            pstmt.setInt(3, product.getStock());
+            
+            pstmt.executeUpdate();
+
+        }catch (SQLException e){
+            throw new RuntimeException("ERRO ao salvar produto: " + e.getMessage());
         }
     }
 }
