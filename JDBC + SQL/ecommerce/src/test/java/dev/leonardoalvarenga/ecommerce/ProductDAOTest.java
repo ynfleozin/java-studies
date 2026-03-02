@@ -4,6 +4,8 @@ import dev.leonardoalvarenga.ecommerce.DAO.ProductDAO;
 import dev.leonardoalvarenga.ecommerce.models.Product;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ProductDAOTest {
@@ -22,5 +24,16 @@ public class ProductDAOTest {
         assertDoesNotThrow(() -> {
             productDAO.save(product);
         });
+    }
+
+    @Test
+    public void shouldFindAllProducts(){
+        ProductDAO productDAO = new ProductDAO();
+        Product product = new Product("Mouse Gamer", 200, 10);
+
+        productDAO.save(product);
+        List<Product> products = productDAO.findAll();
+
+        assertFalse(products.isEmpty());
     }
 }
