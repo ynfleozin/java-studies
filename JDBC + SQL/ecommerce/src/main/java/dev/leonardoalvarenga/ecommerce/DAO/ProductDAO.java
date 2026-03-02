@@ -3,10 +3,9 @@ package dev.leonardoalvarenga.ecommerce.DAO;
 import dev.leonardoalvarenga.ecommerce.config.ConnectionFactory;
 import dev.leonardoalvarenga.ecommerce.models.Product;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDAO {
     private ConnectionFactory factory;
@@ -49,5 +48,31 @@ public class ProductDAO {
         }catch (SQLException e){
             throw new RuntimeException("ERRO ao salvar produto: " + e.getMessage());
         }
+    }
+
+    public List<Product> findAll(){
+        String sql = "SELECT * FROM products";
+        List<Product> products = new ArrayList<>();
+
+        try(Connection conn = factory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql);
+            ResultSet rs = pstmt.executeQuery()){
+            
+            while (rs.next()){
+                Product product = new Product();
+                
+                product.setId(rs.getLong("id"));
+                product.setName(rs.getString("name"));
+                product.setPrice(rs.getDouble("price"));
+                product.setStock(rs.getInt("stock"));
+                
+                products.add(product);
+            }
+            
+        }catch(SQLException e){
+            throw new RuntimeException("Erro ao buscar produtos: " + e.getMessage());
+        }
+        
+        return products;
     }
 }
