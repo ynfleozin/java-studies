@@ -38,6 +38,22 @@ public class ProductDAOTest {
     }
 
     @Test
+    public void shouldUpdateProductSuccessfully(){
+        ProductDAO productDAO = new ProductDAO();
+        Product product = new Product("Mouse Gamer", 200, 10);
+
+        productDAO.save(product);
+        List<Product> products = productDAO.findAll();
+        Product productDb = products.get(products.size() - 1);
+
+        productDb.setStock(30);
+
+        assertDoesNotThrow(() -> {
+            productDAO.update(productDb);
+        });
+    }
+
+    @Test
     public void shouldDeleteProductSuccessfully(){
         ProductDAO productDAO = new ProductDAO();
         Product product = new Product("Mouse Gamer", 200, 10);
