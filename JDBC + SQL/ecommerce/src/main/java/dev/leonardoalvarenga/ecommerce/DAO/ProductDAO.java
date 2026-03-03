@@ -81,4 +81,18 @@ public class ProductDAO {
             throw new RuntimeException("ERRO ao atualizar produto: " + e.getMessage());
         }
     }
+
+    public void delete(Long id){
+        String sql = "DELETE FROM products WHERE id = ?";
+
+        try(Connection conn = factory.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setLong(1, id);
+            pstmt.executeUpdate();
+
+        }catch(SQLException e){
+            throw new RuntimeException("ERRO ao deletar produto: " + e.getMessage());
+        }
+    }
 }
