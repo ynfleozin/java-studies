@@ -36,4 +36,19 @@ public class ProductDAOTest {
 
         assertFalse(products.isEmpty());
     }
+
+    @Test
+    public void shouldDeleteProductSuccessfully(){
+        ProductDAO productDAO = new ProductDAO();
+        Product product = new Product("Mouse Gamer", 200, 10);
+
+        productDAO.save(product);
+        List<Product> products = productDAO.findAll();
+
+        Long id = products.get(products.size() - 1).getId();
+
+        assertDoesNotThrow(() -> {
+            productDAO.delete(id);
+        });
+    }
 }
