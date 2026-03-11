@@ -7,8 +7,10 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ReportServiceTest {
     @Test
@@ -25,5 +27,40 @@ public class ReportServiceTest {
 
         assertEquals(1, service.countMatchesByTeam(matches, "Bayern de Munique"));
 
+    }
+
+    @Test
+    public void shouldFindAndReturnOptionalMatch(){
+        ReportService service = new ReportService();
+
+        List<Match> matches = new ArrayList<>();
+
+        Match m1 = new Match("Bayern de Munique", "Atalanta", 3, 0, LocalDate.of(2026, 3, 10));
+        Match m2 = new Match("Newcastle", "Barcelona", 1, 2, LocalDate.of(2026, 3, 10));
+
+        matches.add(m1);
+        matches.add(m2);
+
+        Optional<Match> result = service.findFirstMatchByTeam(matches,"Newcastle");
+
+        assertTrue(result.isPresent());
+        assertEquals("Newcastle", result.get().homeTeam());
+    }
+
+    @Test
+    public void shouldReturnOptionalEmpty(){
+        ReportService service = new ReportService();
+
+        List<Match> matches = new ArrayList<>();
+
+        Match m1 = new Match("Bayern de Munique", "Atalanta", 3, 0, LocalDate.of(2026, 3, 10));
+        Match m2 = new Match("Newcastle", "Barcelona", 1, 2, LocalDate.of(2026, 3, 10));
+
+        matches.add(m1);
+        matches.add(m2);
+
+        Optional<Match> result = service.findFirstMatchByTeam(matches,"Real Madrid");
+
+        assertTrue(result.isEmpty());
     }
 }
