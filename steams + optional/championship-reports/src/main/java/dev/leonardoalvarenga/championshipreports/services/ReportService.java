@@ -10,4 +10,10 @@ public class ReportService {
                 .filter(match -> match.homeTeam().equals(teamName) || match.awayTeam().equals(teamName))
                 .count();
     }
+
+    public int calculateTotalChampionshipGoals(List<Match> matches){
+        return matches.stream()
+                .mapToInt(Match::getTotalGoals)
+                .sum();
+    }
 }
